@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 样式设置，可根据需求自行调整 */
+    #sliderContainer {
+      width: 300px;
+      margin: 50px auto;
+    }
+
+    #slider {
+      width: 100%;
+      height: 20px;
+      background-color: #ddd;
+      position: relative;
+      cursor: pointer;
+    }
+
+    #sliderHandle {
+      width: 20px;
+      height: 20px;
+      background-color: #4CAF50;
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+
+<div id="sliderContainer">
+  <div id="slider">
+    <div id="sliderHandle"></div>
+  </div>
+</div>
+
+<script>
+  // 获取滑块相关元素
+  const slider = document.getElementById('slider');
+  const sliderHandle = document.getElementById('sliderHandle');
+
+  // 监听滑块的mousedown事件
+  sliderHandle.addEventListener('mousedown', startDragging);
+
+  function startDragging(e) {
+    // 阻止默认的拖动行为
+    e.preventDefault();
+
+    // 记录鼠标按下时的初始位置
+    const initialX = e.clientX;
+
+    // 监听document上的mousemove和mouseup事件
+    document.addEventListener('mousemove', handleDrag);
+    document.addEventListener('mouseup', stopDragging);
+
+    // 处理滑块拖动的函数
+    function handleDrag(e) {
+      // 计算鼠标的位移
+      const deltaX = e.clientX - initialX;
+
+      // 获取滑块当前的位置
+      let currentX = sliderHandle.offsetLeft + deltaX;
+
+      // 限制滑块在slider范围内移动
+      currentX = Math.max(0, Math.min(currentX, slider.offsetWidth - sliderHandle.offsetWidth));
+
+      // 设置滑块的新位置
+      sliderHandle.style.left = currentX + 'px';
+    }
+
+    // 停止拖动时移除事件监听
+    function stopDragging() {
+      document.removeEventListener('mousemove', handleDrag);
+      document.removeEventListener('mouseup', stopDragging);
+    }
+  }
+</script>
+
+</body>
+</html>

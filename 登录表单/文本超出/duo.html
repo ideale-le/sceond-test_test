@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 样式设置，可根据需求自行调整 */
+    .ellipsis {
+      width: 250px; /* 设置文本容器的宽度 */
+      height: 50px;
+      white-space: nowrap; /* 防止换行 */
+      overflow: hidden; /* 隐藏超出部分 */
+      text-overflow: ellipsis; /* 显示省略号 */
+      border: 1px solid #ccc; /* 用于展示文本容器的边框 */
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="ellipsis">
+  This is a long text that will be truncated with an ellipsis when it exceeds the container width.
+</div>
+
+</body>
+</html>
